@@ -1,11 +1,10 @@
 require 'httparty'
 
 class OntologyApi
-  attr_accessor :ontology_id
 
-  def request
-    print "Please enter the id : "
-    ontology_id = gets.chomp
+  def request ontology_id: nil
+    return STDOUT.puts "Oops! Missing ontology id." if ontology_id.nil?
+
     headers = { 'Content-Type': 'application/json' }
     url = "http://www.ebi.ac.uk/ols/api/ontologies/#{ontology_id}"
     response = HTTParty.get(url, headers: headers)
@@ -25,9 +24,9 @@ class OntologyApi
       when 200
         parsed_response(response)
       when 404
-        puts "Oops!Invalid ontology id."
+        STDOUT.puts "Oops! Invalid ontology id."
       when 500...600
-        puts "Oops!ERROR #{response.code}"
+        STDOUT.puts "Oops! ERROR #{response.code}"
     end
   end
 end

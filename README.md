@@ -10,5 +10,6 @@ cd ontology/ && gem build ontology.gemspec
 gem install ontology-0.0.0.gem 
 irb
 require 'ontology_api'
-OntologyApi.new.request 
+onto = OntologyApi.new
+onto.request(ontology_id: "efo")
 ```
