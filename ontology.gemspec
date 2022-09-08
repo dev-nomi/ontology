@@ -7,7 +7,6 @@ Gem::Specification.new do |spec|
   spec.description           = 'This gem involves creating some basic code to interact with the Ontology Lookup Service,using their REST API to fetch some information, and then display it in a suitable format'
   spec.homepage              = 'https://github.com/dev-nomi/ontology'
   spec.license               = 'MIT'
-  spec.platform              = Gem::Platform::RUBY
   spec.required_ruby_version = '>= 2.7.4'
 
   spec.files = Dir['README.md', 'LICENSE',
