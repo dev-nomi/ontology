@@ -1,15 +1,11 @@
 require 'httparty'
 
-class Ontology
+class OntologyApi
   attr_accessor :ontology_id
 
-  def initialize ontology_id
-    @ontology_id = ontology_id  
-  end
-
   def request
-    return STDOUT.puts "Oops!Ontology id is missing." if ARGV.empty?
-  
+    print "Please enter the id : "
+    ontology_id = gets.chomp
     headers = { 'Content-Type': 'application/json' }
     url = "http://www.ebi.ac.uk/ols/api/ontologies/#{ontology_id}"
     response = HTTParty.get url, headers: headers
@@ -21,7 +17,7 @@ class Ontology
     STDOUT.puts "Title: #{response['config']['title']}"
     STDOUT.puts "Description: #{response['config']['description']}"
     STDOUT.puts "Number of terms: #{response['numberOfTerms']}"
-    STDOUT.puts "Number of terms: #{response['status']}"
+    STDOUT.puts "Status: #{response['status']}"
   end
 
   def handle_response response
@@ -36,5 +32,5 @@ class Ontology
   end
 end
 
-ontology = Ontology.new(ARGV[0])
+ontology = OntologyApi.new
 ontology.request
