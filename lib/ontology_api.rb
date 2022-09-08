@@ -8,9 +8,9 @@ class OntologyApi
     ontology_id = gets.chomp
     headers = { 'Content-Type': 'application/json' }
     url = "http://www.ebi.ac.uk/ols/api/ontologies/#{ontology_id}"
-    response = HTTParty.get url, headers: headers
+    response = HTTParty.get(url, headers: headers)
 
-    handle_response response
+    handle_response(response)
   end
 
   def parsed_response response
@@ -23,7 +23,7 @@ class OntologyApi
   def handle_response response
     case response.code
       when 200
-        parsed_response response
+        parsed_response(response)
       when 404
         puts "Oops!Invalid ontology id."
       when 500...600
@@ -31,6 +31,3 @@ class OntologyApi
     end
   end
 end
-
-ontology = OntologyApi.new
-ontology.request
