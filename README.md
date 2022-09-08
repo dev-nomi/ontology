@@ -6,5 +6,5 @@
 ## How to run
 ```
 cd ontology
-ruby lib/api.rb efo
+ruby lib/ontology_api.rb 
 ```
